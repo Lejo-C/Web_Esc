@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 17: Brook's Musical Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --soul-green: #00ff9d;
+            --soul-purple: #6a0dad;
+            --bone-white: #f8f9fa;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #000;
+            background-image:
+                linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)),
+                url('./Asset/Brook.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Poppins', sans-serif;
+            color: var(--bone-white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @keyframes musicPulse {
+            0% {
+                text-shadow: 0 0 10px var(--soul-green);
+                transform: scale(1);
+            }
+
+            50% {
+                text-shadow: 0 0 25px var(--soul-green), 0 0 40px var(--soul-purple);
+                transform: scale(1.05);
+            }
+
+            100% {
+                text-shadow: 0 0 10px var(--soul-green);
+                transform: scale(1);
+            }
+        }
+
+        .concert {
+            padding: 3rem;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        h1 {
+            font-family: 'Creepster', cursive;
+            font-size: 3.5rem;
+            color: var(--soul-green);
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px var(--soul-purple);
+            letter-spacing: 2px;
+        }
+
+        button {
+            background: transparent;
+            color: black;
+            font-family: 'Creepster', cursive;
+            padding: 1rem 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: none;
+            position: absolute;
+            margin-left: 190px;
+            
+        }
+
+        button:hover {
+            background: transparent;
+            box-shadow: none;
+            text-shadow: 0 0 20px var(--soul-purple);
+            transform: scale(1.1) rotate(-2deg);
+        }
+
+        #lyrics {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-height: 80px;
+            color: var(--soul-green);
+            text-shadow: 0 0 5px var(--soul-green);
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+
+        #status {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        .clue-box {
+            margin-top: 2.5rem;
+            background: rgba(106, 13, 173, 0.2);
+            border: 1px dashed var(--soul-green);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .clue-skull {
+            font-size: 2rem;
+            animation: laugh 1s infinite alternate;
+        }
+
+        @keyframes laugh {
+            from {
+                transform: rotate(-10deg);
+            }
+
+            to {
+                transform: rotate(10deg);
+            }
+        }
+
+        .clue-text {
+            text-align: left;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .clue-text strong {
+            color: var(--soul-green);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="concert">
+
+        <div style="position: absolute; top: -20px; left: -20px; font-size: 3rem; color: var(--soul-green);">♪</div>
+        <div style="position: absolute; bottom: -20px; right: -20px; font-size: 3rem; color: var(--soul-purple);">♫
+        </div>
+
+        <h1>BROOK'S PERFORMANCE</h1>
+
+
+        <button onclick="playMusic()">PLAY BINKS' SAKE</button>
+
+       
+        <div id="lyrics" style="opacity: 0;">
+            <p>🎵 Yohohoho, yohohoho... <br> Gather up all of the crew, <br> It's time to ship out Binks' brew! 🎵</p>
+            <button onclick="location.href='Page 18.html'">Next Page -></button>
+        </div>
+
+        <p id="status">Press play to start the concert...</p>
+
+        <div class="clue-box">
+            <div class="clue-skull">💀</div>
+            <div class="clue-text">
+                <strong>Soul King's Whisper:</strong>
+                "Yohohoho! A note so small, it vanishes in the dark stage—seek the hidden sound where black hides black."
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let music = "stopped";
+
+        function playMusic() {
+            music = "playing";
+
+            if (music === "playing") {
+                document.getElementById("status").textContent = "Now playing: Binks' Sake!";
+                const lyrics = document.getElementById("lyrics");
+
+                lyrics.style.opacity = "1";
+
+                document.querySelector('button').style.animation = "musicPulse 0.5s infinite";
+
+                console.log("Yohohoho! Music started!");
+
+                setTimeout(() => {
+                    window.location.href = "#page18";
+                }, 2500);
+            }
+        }
+    </script>
+</body>
+
+</html>

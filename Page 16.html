@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 16: Robin's Ancient Poneglyph</title>
+    <!-- Importing Google Fonts for Rich Aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c15;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --primary-glow: #8b5cf6;
+            --text-main: #e2e8f0;
+            --text-highlight: #fcd34d;
+            --accent: #ec4899;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: var(--bg-color);
+            background-image:
+                linear-gradient(rgba(11, 12, 21, 0.7), rgba(11, 12, 21, 0.7)),
+                url('./Asset/Robin.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .archaeology {
+            position: relative;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+            /* Removed card styling to make it plain and attached to bg */
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 2.5rem;
+            background: linear-gradient(135deg, var(--text-highlight), #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(252, 211, 77, 0.2);
+        }
+
+        button {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            opacity: 0;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin-top: 9000000px;
+
+            
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            z-index: -1;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+        }
+
+        button:hover::before {
+            opacity: 1;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        #translation {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(252, 211, 77, 0.2);
+            /* Initially hidden as per requirements */
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        #translation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #translation p {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--text-highlight);
+            margin: 0;
+            text-shadow: 0 0 10px rgba(252, 211, 77, 0.5);
+        }
+
+        /* Ambient particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Clue Styles */
+        .clue-container {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(236, 72, 153, 0.1);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        .clue-icon {
+            background: var(--accent);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-family: 'Outfit', sans-serif;
+            flex-shrink: 0;
+        }
+
+        .clue-text strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .clue-text em {
+            color: var(--text-highlight);
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="particles">
+        <div
+            style="position: absolute; top: 20%; left: 10%; width: 4px; height: 4px; background: white; opacity: 0.5; border-radius: 50%; box-shadow: 0 0 10px white;">
+        </div>
+        <div
+            style="position: absolute; top: 70%; right: 15%; width: 6px; height: 6px; background: var(--accent); opacity: 0.4; border-radius: 50%; box-shadow: 0 0 15px var(--accent);">
+        </div>
+    </div>
+
+    <div class="archaeology">
+
+        <h1>ANCIENT PONEGLYPH</h1>
+
+       
+        <button onclick="decipherPoneglyph()">DECIPHER TEXT</button>
+        <h1>“The stone whispers: what is there, yet unseen, awaits your touch.”</h1>
+
+        
+        <div id="translation">
+            <p>The One Piece is real! <br>
+                <h1>“Seek the place where the page begins, yet is hidden far below the surface.”</h1>
+            </p>
+            <button onclick="location.href='Page 17.html'">Next Page -></button>
+        </div>
+
+        <div class="clue-container">
+            <span class="clue-icon">?</span>
+            <p class="clue-text">
+                <strong>Archeologist's Note:</strong> "I cannot decipher this! The invocation seems... *misspelled* in
+                the ancient texts.
+                And even if you speak it, the truth is *camouflaged* by the darkness itself. It is there, yet unseen."
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function decipherPoneglyph() {
+            const translationEl = document.getElementById("translation");
+
+            translationEl.style.visibility = "visible";
+
+            requestAnimationFrame(() => {
+                translationEl.classList.add("visible");
+            });
+
+            console.log("Poneglyph deciphered. The truth is revealed.");
+
+            // Navigation sequence
+            setTimeout(() => {
+                window.location.href = "#page17";
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>

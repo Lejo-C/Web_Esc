@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monkey D. Luffy - Future Pirate King</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Bangers&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: url('Asset/luffy_bg.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            color: #f1faee;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Overlay to improve text readability */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 31, 63, 0.7);
+            /* Deep ocean blue tint */
+            z-index: -1;
+        }
+
+        /* Header / Navbar */
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ffd60a;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Pirata One', cursive;
+            font-size: 2rem;
+            color: #ffd60a;
+            text-shadow: 2px 2px #d32f2f;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd60a;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 20px 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-family: 'Pirata One', cursive;
+            font-size: 4rem;
+            color: #ffd60a;
+            text-shadow: 3px 3px 0 #d32f2f;
+            margin-bottom: 50px;
+            text-align: center;
+            border-bottom: 3px solid #e63946;
+            padding-bottom: 10px;
+        }
+
+        /* Hero Section */
+        #home {
+            text-align: center;
+        }
+
+        .hero-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 50px;
+            border-radius: 20px;
+            border: 3px solid #e63946;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        h1 {
+            font-family: 'Pirata One', cursive;
+            font-size: 5rem;
+            color: #ffd60a;
+            text-shadow: 3px 3px 0 #000, 5px 5px 0 #e63946;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-family: 'Bangers', cursive;
+            color: #e63946;
+            font-size: 2rem;
+            text-shadow: 2px 2px #000;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #eee;
+        }
+
+        .quote {
+            font-family: 'Bangers', cursive;
+            color: #ffd60a;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-left: 5px solid #ffd60a;
+            font-size: 1.5rem;
+            margin: 20px auto;
+            text-shadow: 1px 1px #000;
+            display: inline-block;
+        }
+
+        /* Crew Grid */
+        .crew-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .crew-card {
+            background: #fffdf0;
+            /* Paper-ish color */
+            padding: 15px;
+            border-radius: 5px;
+            color: #333;
+            text-align: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+
+        .crew-card:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .crew-card:hover {
+            transform: rotate(0) scale(1.05);
+            z-index: 10;
+        }
+
+        .crew-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border: 2px solid #333;
+            margin-bottom: 15px;
+            filter: sepia(0.2);
+        }
+
+        .crew-name {
+            font-family: 'Pirata One', cursive;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .crew-role {
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* Bounty Section */
+        .bounty-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .bounty-item {
+            background: url('https://www.transparenttextures.com/patterns/aged-paper.png'), #f4e4bc;
+            padding: 20px 40px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px dashed #8b4513;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .bounty-item:hover {
+            transform: translateX(10px);
+        }
+
+        .bounty-name {
+            font-family: 'Pirata One', cursive;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .bounty-amount {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            color: #d32f2f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .berry-symbol {
+            width: 30px;
+            height: 30px;
+            background: #d32f2f;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-family: sans-serif;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: #888;
+            text-align: center;
+            padding: 30px;
+            margin-top: auto;
+        }
+
+        /* Gatekeeper Intro */
+        #gatekeeper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .gate-title {
+            font-family: 'Pirata One', cursive;
+            font-size: 4rem;
+            color: #d32f2f;
+            /* BUG 1: Invisible text (Black on Black). SOLUTION: Change color to #d32f2f */
+            text-shadow: 0 0 10px #ff0000;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .gate-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        #reveal-button {
+            background: transparent;
+            border: 2px solid #ffd60a;
+            color: #ffd60a;
+            padding: 10px 30px;
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 214, 10, 0.3);
+            text-transform: uppercase;
+            position: absolute;
+            pointer-events: none;
+            transform: scale(0);
+        }
+
+        #reveal-button:hover {
+            background: #ffd60a;
+            color: #000;
+            box-shadow: 0 0 30px rgba(255, 214, 10, 0.8);
+            transform: scale(1.1);
+        }
+
+        .clue-scroll {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px dashed #ffd60a;
+            background: rgba(255, 214, 10, 0.1);
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .clue-title {
+            color: #d32f2f;
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+            text-align: center;
+        }
+
+        .clue-item {
+            color: #ccc;
+            font-family: 'Roboto', monospace;
+            /* Monospace for code vibes */
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            list-style-type: none;
+        }
+
+        .clue-highlight {
+            color: #ffd60a;
+            font-weight: bold;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.7;
+                transform: scale(0.98);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        /* Next Page Button */
+        #Btn {
+            display: block;
+            margin: 40px auto;
+            background: linear-gradient(45deg, #e63946, #d32f2f);
+            color: #fff;
+            padding: 15px 50px;
+            font-family: 'Pirata One', cursive;
+            font-size: 2rem;
+            border: 2px solid #ffd60a;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #Btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.6);
+            background: linear-gradient(45deg, #d32f2f, #b71c1c);
+        }
+
+        #Btn:active {
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="gatekeeper">
+
+        <h1 class="gate-title">TOP SECRET</h1>
+        <p class="gate-text">Restricted Access: Grand Line Personnel Only</p>
+
+
+        <button id="reveal-button" onclick="revealSecrett()">Reveal Secret</button>
+
+        <div class="clue-scroll">
+            <span class="clue-title">🏴‍☠️ Navigator's Log (Debug Clues) 🏴‍☠️</span>
+            <div class="clue-item">"The note will keep dancing until the rhythm is broken</div>
+
+        </div>
+    </div>
+
+    <header>
+        <div class="logo">STRAW HAT PIRATES</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#crew">Crew</a></li>
+                <li><a href="#bounty">Bounty</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero-content">
+            <h1>Monkey D. Luffy</h1>
+            <h2>Captain of the Straw Hat Pirates</h2>
+            <h1>You Found The One Piece</h1>
+
+            <div class="quote">
+                “I’m gonna be King of the Pirates!” 👒
+            </div>
+
+            <p>
+                You have successfully completed this stage!! <br>
+                now you can move on with the next stage!!<br>
+                Go to the end of this page...
+            </p>
+        </div>
+    </section>
+
+    <section id="crew">
+        <h2 class="section-title">The Nakama</h2>
+        <div class="crew-grid">
+            <div class="crew-card">
+                <img src="Asset/Luffy.png" alt="Luffy" class="crew-img">
+                <div class="crew-name">Monkey D. Luffy</div>
+                <div class="crew-role">Captain</div>
+            </div>
+            <!-- Zoro -->
+            <div class="crew-card">
+                <img src="Asset/zorobounty.jpg" alt="Zoro" class="crew-img">
+                <div class="crew-name">Roronoa Zoro</div>
+                <div class="crew-role">Swordsman</div>
+            </div>
+            <!-- Sanji -->
+            <div class="crew-card">
+                <img src="Asset/sanji.webp" alt="Sanji" class="crew-img">
+                <div class="crew-name">Vinsmoke Sanji</div>
+                <div class="crew-role">Cook</div>
+            </div>
+            <!-- Jimbei -->
+            <div class="crew-card">
+                <img src="Asset/jimbe.jpg" alt="Jimbei" class="crew-img">
+                <div class="crew-name">Jimbei</div>
+                <div class="crew-role">Helmsman</div>
+            </div>
+            <!-- Usopp -->
+            <div class="crew-card">
+                <img src="Asset/Usopp.jpg" alt="Usopp" class="crew-img">
+                <div class="crew-name">God Usopp</div>
+                <div class="crew-role">Sniper</div>
+            </div>
+            <!-- Nami -->
+            <div class="crew-card">
+                <img src="Asset/nami.png" alt="Nami" class="crew-img">
+                <div class="crew-name">Cat Burglar Nami</div>
+                <div class="crew-role">Navigator</div>
+            </div>
+            <!-- Robin -->
+            <div class="crew-card">
+                <img src="Asset/nico robin.avif" alt="Robin" class="crew-img">
+                <div class="crew-name">Nico Robin</div>
+                <div class="crew-role">Archaeologist</div>
+            </div>
+            <!-- Franky -->
+            <div class="crew-card">
+                <img src="Asset/franky01.jpg" alt="Franky" class="crew-img">
+                <div class="crew-name">Franky</div>
+                <div class="crew-role">Shipwright</div>
+            </div>
+            <!-- Brook -->
+            <div class="crew-card">
+                <img src="Asset/Brook.avif" alt="Brook" class="crew-img">
+                <div class="crew-name">Brook</div>
+                <div class="crew-role">Musician</div>
+            </div>
+            <!-- Chopper -->
+            <div class="crew-card">
+                <img src="Asset/chopper.avif" alt="Chopper" class="crew-img">
+                <div class="crew-name">Tony Tony Chopper</div>
+                <div class="crew-role">Doctor</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOUNTY SECTION -->
+    <section id="bounty">
+        <h2 class="section-title">Unknown Bounties</h2>
+        <div class="bounty-list">
+            <div class="bounty-item">
+                <div class="bounty-name">Monkey D. Luffy</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 3,000,000,000
+                </div>
+            </div>
+            <div class="bounty-item">
+                <div class="bounty-name">Roronoa Zoro</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 1,111,000,000
+                </div>
+            </div>
+            <div class="bounty-item">
+                <div class="bounty-name">Jimbei</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 1,100,000,000
+                </div>
+            </div>
+            <div class="bounty-item">
+                <div class="bounty-name">Sanji</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 1,032,000,000
+                </div>
+            </div>
+            <div class="bounty-item">
+                <div class="bounty-name">Nico Robin</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 930,000,000
+                </div>
+            </div>
+            <div class="bounty-item">
+                <div class="bounty-name">God Usopp</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 500,000,000
+                </div>
+            </div>
+            <div class="bounty-item">
+                <div class="bounty-name">Franky</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 394,000,000
+                </div>
+            </div>
+            <div class="bounty-item">
+                <div class="bounty-name">Brook</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 383,000,000
+                </div>
+            </div>
+            <div class="bounty-item">
+                <div class="bounty-name">Nami</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 366,000,000
+                </div>
+            </div>
+            <div class="bounty-item">
+                <div class="bounty-name">Tony Tony Chopper</div>
+                <div class="bounty-amount">
+                    <div class="berry-symbol">B</div> 1,000
+                </div>
+
+
+
+            </div>
+            <button id="Btn">Next Page</button>
+        </div>
+    </section>
+
+    <script>
+        // SCRIPT UPDATED: Named function for easier debugging via inline onclick
+        function revealSecret() {
+            const gatekeeper = document.getElementById('gatekeeper');
+            gatekeeper.style.opacity = '0';
+            setTimeout(() => {
+                gatekeeper.style.display = 'none';
+            }, 1000);
+        }
+
+        const btn = document.getElementById("reveal-button");
+
+        function moveButton() {
+            const maxX = window.innerWidth - 100;
+            const maxY = window.innerHeight - 50;
+            btn.style.left = Math.floor(Math.random() * maxX) + "px";
+            btn.style.top = Math.floor(Math.random() * maxY) + "px";
+        }
+
+        setInterval(moveButton, 100);
+    </script>
+</body>
+
+</html>

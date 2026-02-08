@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 18: Franky's Radical Beam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --hud-cyan: #00f3ff;
+            --hud-red: #ff0055;
+            --hud-bg: rgba(0, 20, 40, 0.85);
+            --steel: #708090;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #0b0c15;
+            background-image: url('./Asset/franky.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--hud-cyan);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hud-panel {
+            margin-right: 5%;
+            width: 400px;
+            padding: 2rem;
+            background: var(--hud-bg);
+            border: 2px solid var(--hud-cyan);
+            border-radius: 4px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            clip-path: polygon(0 0, 100% 0,
+                    100% 90%, 90% 100%,
+                    0 100%);
+        }
+
+        .hud-panel::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            z-index: -1;
+        }
+
+        h1 {
+            font-family: 'Black Ops One', cursive;
+            font-size: 2.5rem;
+            margin: 0 0 1rem 0;
+            color: #fff;
+            text-shadow: 2px 2px 0px var(--hud-red);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--hud-cyan);
+            padding-bottom: 0.5rem;
+        }
+
+        .status-display {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--steel);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .energy-bar-container {
+            width: 100%;
+            height: 30px;
+            background: #111;
+            border: 1px solid var(--steel);
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .energy-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: repeating-linear-gradient(45deg, var(--hud-cyan), var(--hud-cyan) 10px,
+                    #00a8b0 10px, #00a8b0 20px);
+            transition: width 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            box-shadow: 0 0 10px var(--hud-cyan);
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        button.btn-cola {
+            flex: 1;
+            background: rgba(0, 243, 255, 0.1);
+            border: 2px solid var(--hud-cyan);
+            color: var(--hud-cyan);
+            padding: 1rem;
+            font-family: 'Black Ops One', cursive;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button.btn-cola:hover {
+            background: var(--hud-cyan);
+            color: #000;
+            box-shadow: 0 0 20px var(--hud-cyan);
+        }
+
+        button.btn-cola:active {
+            transform: scale(0.98);
+        }
+
+        #radical-beam {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--hud-red);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            font-family: 'Black Ops One';
+            letter-spacing: 2px;
+            opacity: 0.5;
+            cursor: not-allowed;
+            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 20%);
+        }
+
+        .clue-terminal {
+            margin-top: 2rem;
+            background: black;
+            border-left: 4px solid var(--hud-red);
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .clue-terminal strong {
+            color: var(--hud-red);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        button.btn-cola{
+            display: none;
+        }
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hud-panel">
+        <h1>BF-37 SYSTEM</h1>
+
+        <div class="status-display">
+            <div>SYSTEM: <span style="color: var(--hud-cyan)">ONLINE</span></div>
+            <div>FUEL: <span id="fuel-val">0</span> / 100 L</div>
+
+            <div class="energy-bar-container">
+                <div id="energy-bar" class="energy-bar-fill"></div>
+            </div>
+
+            <div id="status-msg">WAITING FOR COLA...</div>
+        </div>
+
+        <div class="controls">
+            
+            <button class="btn-cola" onclick="add.Cola()">+33L COLA</button>
+        </div>
+
+        
+        <button id="radical-beam" onclick="fireBeam()">FIRE RADICAL
+            BEAM</button>
+
+        <div class="clue-terminal">
+            <strong>> SYSTEM ALERT!</strong>
+            <span class="blink">_</span>
+            "Super... The Cola pump isn't responding! It's like the *trigger* is missing from the console!
+            And even if we charge to MAX, the localized *visibility* field might keep our weapon hidden!"
+        </div>
+    </div>
+
+    <script>
+        
+        let fuel = 0;
+
+        
+        function addSomeCola() {
+            const el = document.getElementById('fuel-val');
+            let currentVal = parseInt(el.innerText);
+            el.innerText = currentVal + 33;
+            console.log("Pouring... but it feels light?");
+        }
+
+
+
+        function updateSystem() {
+            document.getElementById('fuel-val').innerText = fuel;
+
+            
+            let displayWidth = Math.min(parseInt(fuel), 100);
+            if (isNaN(displayWidth)) displayWidth = 0;
+
+            document.getElementById('energy-bar').style.width = displayWidth + "%";
+
+            
+            if (fuel >= 100) {
+                document.getElementById('status-msg').style.color = "#00ff00";
+                document.getElementById('status-msg').innerText = "SUPER CHARGED!";
+
+                const beamBtn = document.getElementById('radical-beam');
+                beamBtn.style.opacity = "1";
+                beamBtn.style.cursor = "pointer";
+                beamBtn.disabled = false; 
+            } else {
+                document.getElementById('status-msg').style.color = "var(--hud-cyan)";
+                document.getElementById('status-msg').innerText = "CHARGING: " + fuel + "...";
+
+                const beamBtn = document.getElementById('radical-beam');
+                beamBtn.style.opacity = "0.5";
+                beamBtn.style.cursor = "not-allowed";
+                beamBtn.disabled = true;
+            }
+        }
+
+        function fireBeam() {
+            if (fuel >= 100) {
+                alert("SUUUUUUUUPER RADICAL BEAM!");
+               
+                document.body.style.background = "white"; 
+                setTimeout(() => {
+                    document.body.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:var(--hud-cyan);font-family:Black Ops One;font-size:3rem;'>ESCAPED!</div>";
+                }, 500);
+            } else {
+                console.log("Not enough Super Energy!");
+            }
+        }
+
+        function addCola() {
+            fuel += 33;
+            updateSystem();
+        }
+    </script>
+</body>
+
+</html>

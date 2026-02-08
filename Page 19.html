@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 19: God Usopp's Sniper Nest</title>
+    <!-- Fonts: 'Permanent Marker' for handwriting/sketch feel, 'Fredoka' for friendly readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --pop-green: #aeea00;
+            --jungle-green: #1b5e20;
+            --wood-brown: #3e2723;
+            --parchment: #fff3e0;
+            --usopp-yellow: #ffeb3b;
+            --usopp-red: #d50000;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #1a2e1a;
+            background-image: url('./Asset/Usopp.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Fredoka', sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* Vignette for focus */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.6) 90%);
+            pointer-events: none;
+        }
+
+        .sniper-nest {
+            position: relative;
+            background: transparent;
+            border: none;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: none;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            z-index: 10;
+        }
+
+        /* Leaves decoration */
+        .leaf {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: var(--jungle-green);
+            border-radius: 0 50% 0 50%;
+            transform: rotate(-45deg);
+            z-index: -1;
+            /* Make them float around */
+            opacity: 0.8;
+        }
+
+        .leaf.top-left {
+            top: 10%;
+            left: 10%;
+        }
+
+        .leaf.top-right {
+            top: 10%;
+            right: 10%;
+            transform: rotate(45deg);
+        }
+
+        .leaf.bottom-left {
+            bottom: 10%;
+            left: 10%;
+            transform: rotate(-135deg);
+        }
+
+        .leaf.bottom-right {
+            bottom: 10%;
+            right: 10%;
+            transform: rotate(135deg);
+        }
+
+        h1 {
+            font-family: 'Permanent Marker', cursive;
+            color: var(--usopp-yellow);
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 0px #000, 0 0 20px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .bounty-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px #000;
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        #target {
+            position: fixed;
+            
+            top: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, red 40%, white 40%, white 60%, red 60%);
+            border-radius: 50%;
+            transition: top 0.2s ease, left 0.2s ease;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 0 15px var(--pop-green);
+            --target-state: running;
+        }
+
+        #status-msg {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2rem;
+            min-height: 2rem;
+            color: var(--pop-green);
+            text-shadow: 2px 2px 0 #000, 0 0 10px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        button {
+            margin-top: 2rem;
+            background: transparent;
+            color: var(--pop-green);
+            padding: 0.8rem 2rem;
+            border: none;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        button:hover {
+            text-shadow: 0 0 20px var(--pop-green);
+            transform: scale(1.1) rotate(-2deg);
+        }
+
+        #nav-next {
+            display: none;
+            margin-top: 2rem;
+            background: transparent;
+            color: var(--pop-green);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 2rem;
+            text-shadow: 0 0 10px var(--wood-brown);
+        }
+
+        #nav-next:hover {
+            text-shadow: 0 0 20px var(--pop-green);
+            transform: scale(1.1);
+        }
+
+        .hint-text {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #ddd;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sniper-nest">
+        <!-- Decoration Leaves -->
+        <div class="leaf top-left"></div>
+        <div class="leaf top-right"></div>
+        <div class="leaf bottom-left"></div>
+        <div class="leaf bottom-right"></div>
+
+        <h1>GOD USOPP CHALLENGE</h1>
+        <p class="bounty-text">"You'll never catch me! I'm too fast for normal pirates!"</p>
+
+        <!-- Target is ready -->
+        <div id="target"></div>
+
+        <div id="status-msg">Hits: <span id="score">0</span> / 3</div>
+        <button>Hit The Target</button>
+
+        <a href="#page20" id="nav-next">Proceed to Next Island -></a>
+
+    </div>
+
+    <script>
+        let score = 0;
+        const target = document.getElementById('target');
+        const scoreDisplay = document.getElementById('score');
+        const msgDisplay = document.getElementById('status-msg');
+        const navBtn = document.getElementById('nav-next');
+
+        target.addEventListener('mouseover', moveTarget);
+
+        function moveTarget() {
+            const style = window.getComputedStyle(target);
+            const state = style.getPropertyValue('--target-state').trim();
+
+            if (state !== 'running') {
+                return; 
+            }
+
+            const maxX = window.innerWidth - 60;
+            const maxY = window.innerHeight - 60;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            target.style.left = randomX + 'px';
+            target.style.top = randomY + 'px';
+
+            target.style.transform = 'none';
+        }
+
+        target.addEventListener('click', function () {
+            score++;
+            scoreDisplay.innerText = score;
+
+            target.style.background = "var(--pop-green)";
+            setTimeout(() => {
+                target.style.background = "radial-gradient(circle, red 40%, white 40%, white 60%, red 60%)";
+            }, 200);
+
+            if (score >= 3) {
+                winGame();
+            } else {
+                moveTarget();
+            }
+        });
+
+        function winGame() {
+            msgDisplay.innerHTML = "<span style='color:var(--jungle-green); background:rgba(255,255,255,0.8); padding:5px; border-radius:5px;'>TARGET CLEARED! BRAVE WARRIOR!</span>";
+            target.style.display = 'none';
+            navBtn.style.display = 'inline-block';
+        }
+
+    </script>
+</body>
+
+</html>
