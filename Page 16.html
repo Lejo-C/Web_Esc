@@ -46,7 +46,6 @@
             max-width: 800px;
             width: 100%;
             padding: 2rem;
-            /* Removed card styling to make it plain and attached to bg */
             background: transparent;
             border: none;
             box-shadow: none;
@@ -97,7 +96,7 @@
             z-index: 1;
             margin-top: 9000000px;
 
-            
+
         }
 
         button::before {
@@ -132,7 +131,6 @@
             background: rgba(0, 0, 0, 0.3);
             border-radius: 12px;
             border: 1px solid rgba(252, 211, 77, 0.2);
-            /* Initially hidden as per requirements */
             visibility: hidden;
             opacity: 0;
             transform: translateY(10px);
@@ -152,7 +150,7 @@
             text-shadow: 0 0 10px rgba(252, 211, 77, 0.5);
         }
 
-        /* Ambient particles */
+
         .particles {
             position: absolute;
             top: 0;
@@ -163,7 +161,6 @@
             z-index: -1;
         }
 
-        /* Clue Styles */
         .clue-container {
             margin-top: 2rem;
             padding: 1rem;
@@ -220,14 +217,14 @@
 
         <h1>ANCIENT PONEGLYPH</h1>
 
-       
+
         <button onclick="decipherPoneglyph()">DECIPHER TEXT</button>
         <h1>“The stone whispers: what is there, yet unseen, awaits your touch.”</h1>
 
-        
+
         <div id="translation">
             <p>The One Piece is real! <br>
-                <h1>“Seek the place where the page begins, yet is hidden far below the surface.”</h1>
+            <h1>“Seek the place where the page begins, yet is hidden far below the surface.”</h1>
             </p>
             <button onclick="location.href='Page 17.html'">Next Page -></button>
         </div>
@@ -254,7 +251,7 @@
 
             console.log("Poneglyph deciphered. The truth is revealed.");
 
-            // Navigation sequence
+
             setTimeout(() => {
                 window.location.href = "#page17";
             }, 2000);

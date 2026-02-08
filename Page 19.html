@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 19: God Usopp's Sniper Nest</title>
-    <!-- Fonts: 'Permanent Marker' for handwriting/sketch feel, 'Fredoka' for friendly readability -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Permanent+Marker&display=swap"
@@ -37,7 +37,6 @@
             user-select: none;
         }
 
-        /* Vignette for focus */
         body::before {
             content: "";
             position: absolute;
@@ -61,7 +60,6 @@
             z-index: 10;
         }
 
-        /* Leaves decoration */
         .leaf {
             position: absolute;
             width: 50px;
@@ -70,7 +68,6 @@
             border-radius: 0 50% 0 50%;
             transform: rotate(-45deg);
             z-index: -1;
-            /* Make them float around */
             opacity: 0.8;
         }
 
@@ -117,7 +114,7 @@
 
         #target {
             position: fixed;
-            
+
             top: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
@@ -192,7 +189,6 @@
 <body>
 
     <div class="sniper-nest">
-        <!-- Decoration Leaves -->
         <div class="leaf top-left"></div>
         <div class="leaf top-right"></div>
         <div class="leaf bottom-left"></div>
@@ -201,7 +197,7 @@
         <h1>GOD USOPP CHALLENGE</h1>
         <p class="bounty-text">"You'll never catch me! I'm too fast for normal pirates!"</p>
 
-        <!-- Target is ready -->
+
         <div id="target"></div>
 
         <div id="status-msg">Hits: <span id="score">0</span> / 3</div>
@@ -225,7 +221,7 @@
             const state = style.getPropertyValue('--target-state').trim();
 
             if (state !== 'running') {
-                return; 
+                return;
             }
 
             const maxX = window.innerWidth - 60;
