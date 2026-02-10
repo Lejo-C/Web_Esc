@@ -22,7 +22,7 @@
             padding: 0;
             height: 100vh;
             background-color: #0b0c15;
-            background-image: url('./Asset/franky.jpg');
+            background-image: url('./Asset/Page18_Franky.jpg');
             background-size: cover;
             background-position: center;
             font-family: 'Share Tech Mono', monospace;
@@ -168,9 +168,10 @@
             margin-bottom: 0.5rem;
         }
 
-        button.btn-cola{
+        button.btn-cola {
             display: none;
         }
+
         .blink {
             animation: blinker 1s linear infinite;
         }
@@ -200,11 +201,11 @@
         </div>
 
         <div class="controls">
-            
+
             <button class="btn-cola" onclick="add.Cola()">+33L COLA</button>
         </div>
 
-        
+
         <button id="radical-beam" onclick="fireBeam()">FIRE RADICAL
             BEAM</button>
 
@@ -217,10 +218,10 @@
     </div>
 
     <script>
-        
+
         let fuel = 0;
 
-        
+
         function addSomeCola() {
             const el = document.getElementById('fuel-val');
             let currentVal = parseInt(el.innerText);
@@ -233,13 +234,13 @@
         function updateSystem() {
             document.getElementById('fuel-val').innerText = fuel;
 
-            
+
             let displayWidth = Math.min(parseInt(fuel), 100);
             if (isNaN(displayWidth)) displayWidth = 0;
 
             document.getElementById('energy-bar').style.width = displayWidth + "%";
 
-            
+
             if (fuel >= 100) {
                 document.getElementById('status-msg').style.color = "#00ff00";
                 document.getElementById('status-msg').innerText = "SUPER CHARGED!";
@@ -247,7 +248,7 @@
                 const beamBtn = document.getElementById('radical-beam');
                 beamBtn.style.opacity = "1";
                 beamBtn.style.cursor = "pointer";
-                beamBtn.disabled = false; 
+                beamBtn.disabled = false;
             } else {
                 document.getElementById('status-msg').style.color = "var(--hud-cyan)";
                 document.getElementById('status-msg').innerText = "CHARGING: " + fuel + "...";
@@ -262,8 +263,8 @@
         function fireBeam() {
             if (fuel >= 100) {
                 alert("SUUUUUUUUPER RADICAL BEAM!");
-               
-                document.body.style.background = "white"; 
+
+                document.body.style.background = "white";
                 setTimeout(() => {
                     document.body.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:var(--hud-cyan);font-family:Black Ops One;font-size:3rem;'>ESCAPED!</div>";
                 }, 500);
